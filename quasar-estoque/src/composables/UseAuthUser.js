@@ -12,7 +12,7 @@ export default function useAuthUser () {
         return user
     }
 
-    const loginWithSocialProovider = async (provider) => {
+    const loginWithSocialProvider = async (provider) => {
         const { user, error } = await supabase.auth.signIn({ provider })
         if (error) throw error
         return user
@@ -24,13 +24,13 @@ export default function useAuthUser () {
     }
 
     const isLoggedIn = () => {
-        return !!user.value
+        return !! user.value
     }
     
     const register = async ({ email, password, ...meta }) => {
         const { user, error } = await supabase.auth.signUp(
             { email, password },
-            { 
+            {
                 data: meta,
                 redirectTo: `${window.location.origin}/me?fromEmail=registrationConfimation`
             }
@@ -54,7 +54,7 @@ export default function useAuthUser () {
     return {
         user,
         login,
-        loginWithSocialProovider,
+        loginWithSocialProvider,
         logout,
         isLoggedIn,
         register,
