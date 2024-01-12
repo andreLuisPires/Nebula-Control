@@ -6,7 +6,7 @@
         <q-input label="Nome" outlined v-model="form.name" />
         <q-input label="Email" outlined v-model="form.email" />
         <q-input label="Senha" outlined v-model="form.password" />
-        <div class="full-width q-pt-md">
+        <div class="full-width q-pt-md q-gutter-y-sm">
           <q-btn
             label="Registrar-se"
             color="primary"
@@ -15,14 +15,14 @@
             rounded
             type="submit"
           />
-        </div>
-        <div class="full-width">
           <q-btn
             label="Voltar"
             color="primary"
             class="full-width"
+            rounded
             flat
-            to="/login"
+            :to="{ name: 'login' }"
+            size="sm"
           />
         </div>
       </div>

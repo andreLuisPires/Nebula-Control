@@ -4,6 +4,15 @@
     <p class="">
       Por favor confirme o seu email para finalizar o registro <b>{{ $route.query.email }}</b>
     </p>
+    <div class="full-width q-mt-xl">
+          <q-btn
+            label="Login"
+            color="primary"
+            class="full-width"
+            flat
+            to="/login"
+          />
+        </div>
   </q-page>
 </template>
 
