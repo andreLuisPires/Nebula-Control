@@ -72,7 +72,7 @@ const linksList = [
     caption: '',
     icon: 'mdi-shape-outline',
     routeName: 'category',
-  },
+  }
 ];
 
 export default defineComponent({
