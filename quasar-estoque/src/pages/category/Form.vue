@@ -72,9 +72,9 @@ export default defineComponent({
                     notifySucess('Atualizado com sucesso!')
                 } else {
                     await post(table, form.value)
-                    notifySucess('Sucesso no envio!')
+                    notifySucess('Cadastrado com sucesso!')
                 }
-                router.push({ name: 'category '})
+                router.push({ name: 'category'})
             } catch (error) {
                 notifyError(error.message)
             }
