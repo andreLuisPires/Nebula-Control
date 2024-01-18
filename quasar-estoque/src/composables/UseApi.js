@@ -1,5 +1,6 @@
 import useSupabase from 'src/boot/supabase'
 import useAuthUser from './UseAuthUser'
+import { uid } from 'quasar'
 
 
 export default function useApi () {
@@ -54,11 +55,35 @@ export default function useApi () {
         return data
     }
 
+    const uploadImg = async (file, storage) => {
+      const fileName = uid()
+      const { error } = supabase
+        .storage
+        .from(storage)
+        .upload(fileName, file, {
+          cacheControl: '3600',
+          upsert: false
+        })
+      const publicUrl = await getUrlPublic(fileName, storage)
+      if (error) throw error
+      return publicUrl
+    }
+
+    const getUrlPublic = async (fileName, storage) => {
+      const { publicURL, error } = supabase
+        .storage
+        .from(storage)
+        .getPublicUrl(fileName)
+      if (error) throw error
+      return publicURL
+    }
+
     return {
         list,
         getById,
         post,
         update,
-        remove
+        remove,
+        uploadImg
     }
 }
