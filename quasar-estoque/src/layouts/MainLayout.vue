@@ -62,13 +62,13 @@ import { useQuasar } from 'quasar'
 
 const linksList = [
   {
-    title: 'Home',
+    title: 'Ínicio',
     caption: '',
     icon: 'mdi-home',
     routeName: 'me',
   },
   {
-    title: 'Category',
+    title: 'Categoria',
     caption: '',
     icon: 'mdi-shape-outline',
     routeName: 'category',
