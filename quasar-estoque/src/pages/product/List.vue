@@ -10,8 +10,18 @@
       >
         <template v-slot:top>
           <span class="text-h6">
-            Product
+            Produtos
           </span>
+          <q-btn 
+            label="My Store"
+            dense
+            size="sm"
+            outline
+            class="q-ml-sm"
+            icon="mdi-store"
+            color="primary"
+            @click="handleGoToStore"
+          />
           <q-space />
           <q-btn
             v-if="$q.platform.is.desktop"
@@ -60,6 +70,7 @@
 <script>
 import { defineComponent, ref, onMounted } from "vue";
 import useApi from "src/composables/UseApi";
+import useAuthUser from "src/composables/UseAuthUser";
 import useNotify from "src/composables/UseNotify";
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
@@ -67,7 +78,7 @@ import { columnsProduct } from './table'
 
 
 export default defineComponent({
-  name: "PageCategoryList",
+  name: "PageProductList",
   setup() {
     const products = ref([])
     const loading = ref(true)
@@ -75,13 +86,14 @@ export default defineComponent({
     const table = 'product'
     const $q = useQuasar()
 
-    const { list, remove } = useApi()
+    const { listPublic, remove } = useApi()
+    const { user } = useAuthUser()
     const { notifyError, notifySucess } = useNotify()
 
     const handleListProducts = async () => {
       try {
         loading.value = true
-        products.value = await list(table)
+        products.value = await listPublic(table, user.value.id)
         loading.value = false
       } catch (error) {
         notifyError(error.message)
@@ -109,6 +121,11 @@ export default defineComponent({
       }
     }
 
+    const handleGoToStore = () => {
+      const idUser = user.value.id
+      router.push({ name: 'product-public', params: {id: idUser} })
+    }
+
     onMounted(() => {
       handleListProducts()
     })
@@ -118,7 +135,8 @@ export default defineComponent({
       products,
       loading,
       handleEdit,
-      handleRemoveProduct
+      handleRemoveProduct,
+      handleGoToStore
     };
   },
 });

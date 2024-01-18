@@ -2,7 +2,7 @@
   <q-page padding>
     <div class="row justify-center">
       <div class="col-12 text-center">
-        <p class="text-h6">Form Product</p>
+        <p class="text-h6">Cadastro de Produtos</p>
       </div>
       <q-form
         class="col-md-7 col-xs-12 col-sm-12 q-gutter-y-md"
@@ -70,7 +70,7 @@
         />
 
         <q-btn
-          label="Cancel"
+          label="Cancelar"
           color="primary"
           class="full-width"
           rounded

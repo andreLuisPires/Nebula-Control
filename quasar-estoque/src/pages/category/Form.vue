@@ -3,13 +3,15 @@
         <div class="row justify-center">
             <div class="col-12 text-center">
                 <p class="text-h6">
-                    Form Category
+                    Cadastro de Categorias
                 </p>
             </div>
             <q-form class="col-md-7 col-xs-12 col-sm-12 q-gutter-y-md" @submit.prevent="handleSubmit">
                 <q-input
                     label="Nome do produto"
                     v-model="form.name"
+                    
+                    outlined
                     :rules="[val => (val && val.length > 0) || 'O Nome é obrigatório.']"
                 />
 
@@ -22,7 +24,7 @@
                 />
 
                 <q-btn
-                    label="Cancel"
+                    label="Cancelar"
                     color="primary"
                     class="full-width"
                     rounded
