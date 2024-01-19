@@ -15,7 +15,7 @@
             Produtos
           </span>
           <q-space />
-          <q-input outlined dense debounce="300" v-model="filter" placeholder="Search" class="q-mr-sm">
+          <q-input outlined dense debounce="300" v-model="filter" placeholder="Pesquisar" class="q-mr-sm">
             <template v-slot:append>
               <q-icon name="mdi-magnify" />
             </template>

@@ -13,7 +13,7 @@
             Produtos
           </span>
           <q-btn 
-            label="My Store"
+            label="Minha Loja"
             dense
             size="sm"
             outline
