@@ -21,7 +21,7 @@
           outlined
           mask="(##) #####-####"
           unmasked-value
-          :rules="[(val) => (val && val.length > 0) || 'O Número é obrigatório.']"
+          
         />
 
         <div class="row justify-center q-gutter-md q-pa-md">
@@ -56,19 +56,22 @@ import { useRouter } from "vue-router";
 import useApi from "src/composables/UseApi";
 import useNotify from "src/composables/UseNotify";
 import UseBrand from 'src/composables/UseBrand'
+import useAuthUser from 'src/composables/UseAuthUser'
+
 
 export default defineComponent({
   name: "PageFormConfig",
   setup() {
     const table = "config";
     const router = useRouter();
-    const { post, list, update } = useApi();
+    const { post, listPublic, update } = useApi();
     const { notifyError, notifySucess } = useNotify();
     const { setBrand } = UseBrand()
+    const { user } = useAuthUser()
 
     let config = {};
     const form = ref({
-      name: "",
+      name: '',
       phone: '',
       primary: '',
       secondary: ''
@@ -96,7 +99,7 @@ export default defineComponent({
 
     const handleGetConfig = async () => {
       try {
-        config = await list(table)
+        config = await listPublic(table, user.value.id)
         form.value = config[0]
       } catch (error) {
         notifyError(error.message);
