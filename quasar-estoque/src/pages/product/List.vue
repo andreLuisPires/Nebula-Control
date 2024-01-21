@@ -23,7 +23,7 @@
             @click="handleGoToStore"
           />
           <q-btn 
-            label="Copy Link"
+            label="Copiar Link"
             dense
             size="sm"
             outline
