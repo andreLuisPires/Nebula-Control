@@ -2,7 +2,12 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-toolbar-title class="text-center"> Quasar Estoque </q-toolbar-title>
+        <q-toolbar-title class="col-12 text-center text-h5" v-if="brand.name">
+          {{ brand.name}}
+        </q-toolbar-title>
+        <q-toolbar-title class="col-12 text-center text-h5" v-else>
+          Controle De Estoque
+        </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
@@ -20,13 +25,15 @@ export default defineComponent({
   name: "LoginLayout",
 
   setup() {
-    const { getBrand } = useApi()
+    const { getBrand, brand } = useApi()
 
     onMounted(() => {
       getBrand()
     })
 
-    return {};
+    return {
+      brand
+    };
   },
 });
 </script>
