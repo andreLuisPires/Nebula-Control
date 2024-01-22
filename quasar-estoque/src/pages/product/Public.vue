@@ -1,11 +1,26 @@
 <template>
   <q-page padding>
-    <div class="row" v-if="brand.name">
-      <div class="col-12 text-center text-h4">
-        {{ brand.name }}
-      </div>
-    </div>
-    <div class="row">
+    <div class="row q-mt-md">
+      <q-select
+        outlined 
+        v-model="categoryId" 
+        :options="optionsCategories" 
+        label="Categorias"
+        option-label="name"
+        option-value="id"
+        map-options
+        emit-value
+        class="col-5"
+        clearable
+        dense
+        @update:model-value="handleListProducts(route.params.id)"
+      />
+      <q-space />
+      <q-input outlined dense debounce="300" v-model="filter" placeholder="Pesquisar" class="q-mr-sm col-5">
+            <template v-slot:append>
+              <q-icon name="mdi-magnify" />
+            </template>
+          </q-input>
       <q-table
         :rows="products"
         :columns="columnsProduct"
@@ -19,12 +34,12 @@
           <span class="text-h6">
             Produtos
           </span>
-          <q-space />
-          <q-input outlined dense debounce="300" v-model="filter" placeholder="Pesquisar" class="q-mr-sm">
+          <!-- <q-space /> -->
+          <!-- <q-input outlined dense debounce="300" v-model="filter" placeholder="Pesquisar" class="q-mr-sm">
             <template v-slot:append>
               <q-icon name="mdi-magnify" />
             </template>
-          </q-input>
+          </q-input> -->
         </template>
 
         <template v-slot:item="props">
@@ -70,15 +85,17 @@ export default defineComponent({
     const table = 'product'
     const showDialogDetails = ref(false)
     const productDetails = ref({})
+    const optionsCategories = ref([])
+    const categoryId = ref('')
 
-    const { listPublic, brand } = useApi()
+    const { listPublic } = useApi()
     const { notifyError } = useNotify()
     const route = useRoute()
 
     const handleListProducts = async (userId) => {
       try {
         loading.value = true
-        products.value = await listPublic(table, userId)
+        products.value = categoryId.value ? await listPublic(table, userId, 'category_id', categoryId.value) : await listPublic(table, userId)
         loading.value = false
       } catch (error) {
         notifyError(error.message)
@@ -90,8 +107,13 @@ export default defineComponent({
       showDialogDetails.value = true
     }
 
+    const handleListCategory = async (userId) => {
+      optionsCategories.value = await listPublic('category', userId)
+    }
+
     onMounted(() => {
       if (route.params.id) {
+        handleListCategory(route.params.id)
         handleListProducts(route.params.id)
       }
     })
@@ -105,7 +127,10 @@ export default defineComponent({
       showDialogDetails,
       productDetails,
       handleShowDetails,
-      brand
+      handleListProducts,
+      optionsCategories,
+      categoryId,
+      route
     };
   },
 });
