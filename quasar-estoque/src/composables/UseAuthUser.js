@@ -24,7 +24,7 @@ export default function useAuthUser () {
     }
 
     const isLoggedIn = () => {
-        return !! user.value
+        return !!user.value
     }
     
     const register = async ({ email, password, ...meta }) => {
