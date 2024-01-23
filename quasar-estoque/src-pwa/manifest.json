@@ -1,7 +1,10 @@
 {
+  "name": "Controle De Estoque",
+  "short_name": "Controle De Estoque",
+  "description": "Estoque fácil na palma da sua mão",
   "orientation": "portrait",
   "background_color": "#ffffff",
-  "theme_color": "#027be3",
+  "theme_color": "#2b805a",
   "icons": [
     {
       "src": "icons/icon-128x128.png",
