@@ -1,8 +1,10 @@
 <template>
-  <q-page padding>
-    <!-- <div v-if="user" class="flex flex-center text-h6 q-mt-xl">
-      <p>Olá, <b class="text-primary">{{ user.user_metadata.name }}</b></p>
-    </div> -->
+  <q-page padding >
+    <div v-if="user" class="flex flex-center text-h5 q-mt-md q-mb-md text-italic">
+      <p>Olá,
+        <b class="text-primary">{{ user.user_metadata.name }}</b>
+      </p>
+    </div>
     <div class="row q-col-gutter-md">
       <div class="col-md-4 col-xs-12 col-sm-6">
         <CardDashboard
