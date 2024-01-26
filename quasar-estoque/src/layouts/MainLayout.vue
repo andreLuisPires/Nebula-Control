@@ -13,6 +13,8 @@
 
         <q-toolbar-title>Estoque</q-toolbar-title>
 
+        <dark-mode-toogle />
+
         <q-btn-dropdown flat color="white" icon="person">
           <div class="column items-center q-pa-md q-">
             <q-avatar size="50px">
@@ -60,6 +62,7 @@ import useAuthUser from "src/composables/UseAuthUser";
 import { useRouter } from "vue-router";
 import { useQuasar } from 'quasar'
 import useApi from "src/composables/UseApi";
+import DarkModeToogle from "src/components/DarkModeToggle.vue";
 
 
 const linksList = [
@@ -94,6 +97,7 @@ export default defineComponent({
 
   components: {
     EssentialLink,
+    DarkModeToogle
   },
 
   setup() {

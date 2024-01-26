@@ -1,12 +1,14 @@
 <template>
   <q-page padding>
+    <!-- <div v-if="user" class="flex flex-center text-h6 q-mt-xl">
+      <p>Olá, <b class="text-primary">{{ user.user_metadata.name }}</b></p>
+    </div> -->
     <div class="row q-col-gutter-md">
       <div class="col-md-4 col-xs-12 col-sm-6">
         <CardDashboard
           table="category"
           label="Categorias"
           icon="mdi-shape-outline"
-
         />
       </div>
       <div class="col-md-4 col-xs-12 col-sm-6">
@@ -17,9 +19,6 @@
         />
       </div>
     </div>
-    <!-- <div v-if="user">
-      <p>Olá, <b>{{ user.user_metadata.name }}</b>.</p>
-    </div> -->
   </q-page>
 </template>
 
