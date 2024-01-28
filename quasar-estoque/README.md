@@ -1,6 +1,6 @@
-# Quasar Estoque (quasar-estoque)
+# Nebula Control (controle-de-estoque)
 
-A Quasar Project
+Nebula Control
 
 ## Install the dependencies
 ```bash
